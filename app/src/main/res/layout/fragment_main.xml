@@ -1,0 +1,100 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="@dimen/single_fragment_frameMargin"
+    tools:context="edu.mines.csci448.suspensionguru.MainFragment">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@drawable/rockcrawler"
+        android:contentDescription="@string/fragment_main_imageDescription"/>
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="10dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:labelFor="@+id/fragment_main_vehicleSpinner"
+            android:text="@string/fragment_main_vehicleSpinnerLabel"
+            style="?android:listSeparatorTextViewStyle"/>
+
+        <Spinner
+            android:id="@id/fragment_main_vehicleSpinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center" />
+
+        <ImageButton
+            android:id="@+id/fragment_main_addVehicleButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_input_add"
+            android:contentDescription="@string/fragment_main_imageDescription2"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:labelFor="@+id/fragment_main_setupSpinner"
+            android:text="@string/fragment_main_setupSpinnerLabel"
+            style="?android:listSeparatorTextViewStyle"/>
+
+        <Spinner
+            android:id="@id/fragment_main_setupSpinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center" />
+
+        <ImageButton
+            android:id="@+id/fragment_main_addSetupButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_input_add"
+            android:contentDescription="@string/fragment_main_imageDescription2"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/fragment_main_setupButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/fragment_main_setupButtonLabel"/>
+
+    <Button
+        android:id="@+id/fragment_main_dimensionsButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/fragment_main_dimensionsButtonLabel"/>
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <Button
+        android:id="@+id/fragment_main_simulateButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/fragment_main_simulateButtonLabel"/>
+
+</LinearLayout>
