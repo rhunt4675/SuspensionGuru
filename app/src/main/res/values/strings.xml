@@ -23,10 +23,10 @@
 
     /* 3. Simulation Fragment */
     <string name="fragment_simulation_title">Simulation</string>
-    <string name="fragment_simulation_calculation1Label">[Calculation 1]</string>
-    <string name="fragment_simulation_calculation2Label">[Calculation 2]</string>
-    <string name="fragment_simulation_calculation3Label">[Calculation 3]</string>
-    <string name="fragment_simulation_calculation4Label">[Calculation 4]</string>
+    <string name="fragment_simulation_calculation1Label">Anti-Squat:</string>
+    <string name="fragment_simulation_calculation2Label">Roll Center Height:</string>
+    <string name="fragment_simulation_calculation3Label">Roll Axis Angle:</string>
+    <string name="fragment_simulation_calculation4Label">Other Calc Result:</string>
     <string name="fragment_simulation_refreshButtonLabel">Refresh</string>
     <string name="fragment_simulation_imageDescription">Example 4-link simulation.</string>
     <string name="fragment_simulation_imageDescription2">Get help understanding this calculation.</string>
@@ -35,13 +35,13 @@
     <string name="fragment_setup_title">Vehicle/Setup Details</string>
     <string name="fragment_setup_vehicleTitle">Vehicle Details</string>
     <string name="fragment_setup_setupTitle">Setup Details</string>
-    <string name="fragment_setup_vehicleParameter1Label">[Vehicle Parameter 1]</string>
-    <string name="fragment_setup_vehicleParameter2Label">[Vehicle Parameter 2]</string>
+    <string name="fragment_setup_vehicleParameter1Label">Vehicle Name:</string>
+    <string name="fragment_setup_vehicleParameter2Label">Vehicle Type:</string>
     <string name="fragment_setup_vehicleParameter3Label">[Vehicle Parameter 3]</string>
     <string name="fragment_setup_vehicleParameter4Label">[Vehicle Parameter 4]</string>
     <string name="fragment_setup_vehicleImageDescription">Get help understanding this vehicle parameter.</string>
-    <string name="fragment_setup_setupParameter1Label">[Setup Parameter 1]</string>
-    <string name="fragment_setup_setupParameter2Label">[Setup Parameter 2]</string>
+    <string name="fragment_setup_setupParameter1Label">Setup Name:</string>
+    <string name="fragment_setup_setupParameter2Label">Setup Location:</string>
     <string name="fragment_setup_setupParameter3Label">[Setup Parameter 3]</string>
     <string name="fragment_setup_setupParameter4Label">[Setup Parameter 4]</string>
     <string name="fragment_setup_setupImageDescription">Get help understanding this setup parameter.</string>
