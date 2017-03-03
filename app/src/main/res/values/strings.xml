@@ -13,10 +13,10 @@
 
     /* 2. Dimension Fragment */
     <string name="fragment_dimension_title">Dimensions</string>
-    <string name="fragment_dimension_parameter1Label">[Parameter 1]</string>
-    <string name="fragment_dimension_parameter2Label">[Parameter 2]</string>
-    <string name="fragment_dimension_parameter3Label">[Parameter 3]</string>
-    <string name="fragment_dimension_parameter4Label">[Parameter 4]</string>
+    <string name="fragment_dimension_parameter1Label">[Upper-Axle-X]</string>
+    <string name="fragment_dimension_parameter2Label">[Upper Axle Y]</string>
+    <string name="fragment_dimension_parameter3Label">[Upper Axle Z]</string>
+    <string name="fragment_dimension_parameter4Label">[Lower Axle etc]</string>
     <string name="fragment_dimension_refreshButtonLabel">Refresh</string>
     <string name="fragment_dimension_imageDescription">Example 4-link suspension calculation.</string>
     <string name="fragment_dimension_imageDescription2">Get help understanding this parameter.</string>
