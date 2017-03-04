@@ -51,4 +51,17 @@
     <string name="fragment_help_text">This is an example of a help message that a user might see
         while navigating through the application. This fragment is shared between all help buttons,
         but the message will be customized to the question at hand.</string>
+
+    /* 6. String Arrays */
+    <string-array name="fragment_main_vehicleSpinnerEntries">
+        <item>Vehicle #1</item>
+        <item>Vehicle #2</item>
+        <item>Vehicle #3</item>
+    </string-array>
+    <string-array name="fragment_main_setupSpinnerEntries">
+        <item>Setup #1</item>
+        <item>Setup #2</item>
+        <item>Setup #3</item>
+    </string-array>
+
 </resources>

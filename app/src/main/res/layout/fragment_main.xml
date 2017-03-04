@@ -29,12 +29,17 @@
             android:text="@string/fragment_main_vehicleSpinnerLabel"
             style="?android:listSeparatorTextViewStyle"/>
 
-        <Spinner
-            android:id="@id/fragment_main_vehicleSpinner"
+        <Space
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center" />
+            android:layout_weight="1" />
+
+        <Spinner
+            android:id="@id/fragment_main_vehicleSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:entries="@array/fragment_main_vehicleSpinnerEntries" />
 
         <ImageButton
             android:id="@+id/fragment_main_addVehicleButton"
@@ -58,12 +63,17 @@
             android:text="@string/fragment_main_setupSpinnerLabel"
             style="?android:listSeparatorTextViewStyle"/>
 
-        <Spinner
-            android:id="@id/fragment_main_setupSpinner"
+        <Space
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center" />
+            android:layout_weight="1" />
+
+        <Spinner
+            android:id="@id/fragment_main_setupSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:entries="@array/fragment_main_setupSpinnerEntries"/>
 
         <ImageButton
             android:id="@+id/fragment_main_addSetupButton"
