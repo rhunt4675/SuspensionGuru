@@ -1,264 +1,38 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context="edu.mines.csci448.suspensionguru.SetupActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_margin="@dimen/single_fragment_frameMargin"
-    tools:context="edu.mines.csci448.suspensionguru.MainFragment">
+    android:layout_margin="@dimen/single_fragment_frameMargin">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/fragment_setup_vehicleTitle"
-        style="@style/TextAppearance.AppCompat.Headline"/>
+        android:textStyle="bold"
+        android:textColor="@android:color/darker_gray"
+        style="@style/TextAppearance.AppCompat.Headline" />
 
-    <LinearLayout
+    <ExpandableListView
+        android:id="@+id/fragment_setup_vehicleExpandableListView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:labelFor="@+id/fragment_setup_vehicleParameter1Text"
-            android:text="@string/fragment_setup_vehicleParameter1Label"
-            style="?android:listSeparatorTextViewStyle"/>
-
-        <EditText
-            android:id="@id/fragment_setup_vehicleParameter1Text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:inputType="none"
-            android:layout_weight="1"
-            style=""/>
-
-        <ImageButton
-            android:id="@+id/fragment_setup_vehicleParameter1Help"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@android:drawable/ic_menu_help"
-            android:contentDescription="@string/fragment_setup_vehicleImageDescription"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:labelFor="@+id/fragment_setup_vehicleParameter2Text"
-            android:text="@string/fragment_setup_vehicleParameter2Label"
-            style="?android:listSeparatorTextViewStyle"/>
-
-        <EditText
-            android:id="@id/fragment_setup_vehicleParameter2Text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:inputType="none"
-            android:layout_weight="1"
-            style=""/>
-
-        <ImageButton
-            android:id="@+id/fragment_setup_vehicleParameter2Help"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@android:drawable/ic_menu_help"
-            android:contentDescription="@string/fragment_setup_vehicleImageDescription"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:labelFor="@+id/fragment_setup_vehicleParameter3Text"
-            android:text="@string/fragment_setup_vehicleParameter3Label"
-            style="?android:listSeparatorTextViewStyle"/>
-
-        <EditText
-            android:id="@id/fragment_setup_vehicleParameter3Text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:inputType="none"
-            android:layout_weight="1"
-            style=""/>
-
-        <ImageButton
-            android:id="@+id/fragment_setup_vehicleParameter3Help"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@android:drawable/ic_menu_help"
-            android:contentDescription="@string/fragment_setup_vehicleImageDescription"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:labelFor="@+id/fragment_setup_vehicleParameter4Text"
-            android:text="@string/fragment_setup_vehicleParameter4Label"
-            style="?android:listSeparatorTextViewStyle"/>
-
-        <EditText
-            android:id="@id/fragment_setup_vehicleParameter4Text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:inputType="none"
-            android:layout_weight="1"
-            style=""/>
-
-        <ImageButton
-            android:id="@+id/fragment_setup_vehicleParameter4Help"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@android:drawable/ic_menu_help"
-            android:contentDescription="@string/fragment_setup_vehicleImageDescription"/>
-    </LinearLayout>
-
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="10dp" />
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/fragment_setup_setupTitle"
-        style="@style/TextAppearance.AppCompat.Headline"/>
+        android:textStyle="bold"
+        android:textColor="@android:color/darker_gray"
+        style="@style/TextAppearance.AppCompat.Headline" />
 
-    <LinearLayout
+    <ExpandableListView
+        android:id="@+id/fragment_setup_setupExpandableListView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:labelFor="@+id/fragment_setup_setupParameter1Text"
-            android:text="@string/fragment_setup_setupParameter1Label"
-            style="?android:listSeparatorTextViewStyle"/>
-
-        <EditText
-            android:id="@id/fragment_setup_setupParameter1Text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:inputType="none"
-            android:layout_weight="1"
-            style=""/>
-
-        <ImageButton
-            android:id="@+id/fragment_setup_setupParameter1Help"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@android:drawable/ic_menu_help"
-            android:contentDescription="@string/fragment_setup_setupImageDescription"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:labelFor="@+id/fragment_setup_setupParameter2Text"
-            android:text="@string/fragment_setup_setupParameter2Label"
-            style="?android:listSeparatorTextViewStyle"/>
-
-        <EditText
-            android:id="@id/fragment_setup_setupParameter2Text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:inputType="none"
-            android:layout_weight="1"
-            style=""/>
-
-        <ImageButton
-            android:id="@+id/fragment_setup_setupParameter2Help"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@android:drawable/ic_menu_help"
-            android:contentDescription="@string/fragment_setup_setupImageDescription"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:labelFor="@+id/fragment_setup_setupParameter3Text"
-            android:text="@string/fragment_setup_setupParameter3Label"
-            style="?android:listSeparatorTextViewStyle"/>
-
-        <EditText
-            android:id="@id/fragment_setup_setupParameter3Text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:inputType="none"
-            android:layout_weight="1"
-            style=""/>
-
-        <ImageButton
-            android:id="@+id/fragment_setup_setupParameter3Help"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@android:drawable/ic_menu_help"
-            android:contentDescription="@string/fragment_setup_setupImageDescription"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:labelFor="@+id/fragment_setup_setupParameter4Text"
-            android:text="@string/fragment_setup_setupParameter4Label"
-            style="?android:listSeparatorTextViewStyle"/>
-
-        <EditText
-            android:id="@id/fragment_setup_setupParameter4Text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:inputType="none"
-            android:layout_weight="1"
-            style=""/>
-
-        <ImageButton
-            android:id="@+id/fragment_setup_setupParameter4Help"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@android:drawable/ic_menu_help"
-            android:contentDescription="@string/fragment_setup_setupImageDescription"/>
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp" />
 </LinearLayout>

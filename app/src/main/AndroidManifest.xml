@@ -20,17 +20,20 @@
         <activity
             android:name=".DimensionActivity"
             android:label="@string/fragment_dimension_title"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:parentActivityName=".MainActivity" />
 
         <activity
             android:name=".SimulationActivity"
             android:label="@string/fragment_simulation_title"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:parentActivityName=".MainActivity" />
 
         <activity
             android:name=".SetupActivity"
             android:label="@string/fragment_setup_title"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:parentActivityName=".MainActivity" />
 
         <activity
             android:name=".HelpActivity"

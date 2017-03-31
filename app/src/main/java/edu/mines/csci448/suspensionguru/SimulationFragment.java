@@ -1,6 +1,7 @@
 package edu.mines.csci448.suspensionguru;
 
 
+import android.app.ActionBar;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -21,6 +22,11 @@ public class SimulationFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Enable Up Navigation
+        ActionBar actionBar = getActivity().getActionBar();
+        if (actionBar != null)
+            actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -33,25 +39,25 @@ public class SimulationFragment extends Fragment {
         ImageButton calc1Help = (ImageButton) view.findViewById(R.id.fragment_simulation_calculation1Help);
         calc1Help.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
-                startActivity(HelpActivity.getIntent(getActivity()));
+                startActivity(HelpActivity.getIntent(getActivity(), -1));
             }
         });
         ImageButton calc2Help = (ImageButton) view.findViewById(R.id.fragment_simulation_calculation2Help);
         calc2Help.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
-                startActivity(HelpActivity.getIntent(getActivity()));
+                startActivity(HelpActivity.getIntent(getActivity(), -1));
             }
         });
         ImageButton calc3Help = (ImageButton) view.findViewById(R.id.fragment_simulation_calculation3Help);
         calc3Help.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
-                startActivity(HelpActivity.getIntent(getActivity()));
+                startActivity(HelpActivity.getIntent(getActivity(), -1));
             }
         });
         ImageButton calc4Help = (ImageButton) view.findViewById(R.id.fragment_simulation_calculation4Help);
         calc4Help.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
-                startActivity(HelpActivity.getIntent(getActivity()));
+                startActivity(HelpActivity.getIntent(getActivity(), -1));
             }
         });
 

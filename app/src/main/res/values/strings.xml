@@ -2,24 +2,22 @@
     <string name="app_name">SuspensionGuru</string>
 
     /* 1. Main Fragment */
-    <string name="fragment_main_title">Suspension Guru</string>
     <string name="fragment_main_vehicleSpinnerLabel">Vehicle</string>
     <string name="fragment_main_setupSpinnerLabel">Setup</string>
-    <string name="fragment_main_setupButtonLabel">Vehicle/Setup Details</string>
-    <string name="fragment_main_dimensionsButtonLabel">Suspension Dimensions</string>
+    <string name="fragment_main_setupButtonLabel">Edit Vehicle and Setup</string>
+    <string name="fragment_main_dimensionsButtonLabel">Edit Suspension Dimensions</string>
     <string name="fragment_main_simulateButtonLabel">Simulate</string>
     <string name="fragment_main_imageDescription">Image of rock crawler.</string>
-    <string name="fragment_main_imageDescription2">Add a vehicle setup.</string>
+    <string name="fragment_main_imageDescription2">Add a vehicle configuration.</string>
+    <string name="fragment_main_imageDescription3">Delete a vehicle configuration.</string>
+    <string name="fragment_main_imageDescription4">Add a setup configuration.</string>
+    <string name="fragment_main_imageDescription5">Delete a setup configuration.</string>
 
     /* 2. Dimension Fragment */
     <string name="fragment_dimension_title">Dimensions</string>
-    <string name="fragment_dimension_parameter1Label">[Upper-Axle-X]</string>
-    <string name="fragment_dimension_parameter2Label">[Upper Axle Y]</string>
-    <string name="fragment_dimension_parameter3Label">[Upper Axle Z]</string>
-    <string name="fragment_dimension_parameter4Label">[Lower Axle etc]</string>
-    <string name="fragment_dimension_refreshButtonLabel">Refresh</string>
     <string name="fragment_dimension_imageDescription">Example 4-link suspension calculation.</string>
-    <string name="fragment_dimension_imageDescription2">Get help understanding this parameter.</string>
+    <string name="fragment_dimension_upperLinkTitle">Upper Links</string>
+    <string name="fragment_dimension_lowerLinkTitle">Lower Links</string>
 
     /* 3. Simulation Fragment */
     <string name="fragment_simulation_title">Simulation</string>
@@ -28,23 +26,13 @@
     <string name="fragment_simulation_calculation3Label">Roll Axis Angle:</string>
     <string name="fragment_simulation_calculation4Label">Other Calc Result:</string>
     <string name="fragment_simulation_refreshButtonLabel">Refresh</string>
-    <string name="fragment_simulation_imageDescription">Example 4-link simulation.</string>
     <string name="fragment_simulation_imageDescription2">Get help understanding this calculation.</string>
 
     /* 4. Setup Fragment */
     <string name="fragment_setup_title">Vehicle/Setup Details</string>
     <string name="fragment_setup_vehicleTitle">Vehicle Details</string>
     <string name="fragment_setup_setupTitle">Setup Details</string>
-    <string name="fragment_setup_vehicleParameter1Label">Vehicle Name:</string>
-    <string name="fragment_setup_vehicleParameter2Label">Vehicle Type:</string>
-    <string name="fragment_setup_vehicleParameter3Label">[Vehicle Parameter 3]</string>
-    <string name="fragment_setup_vehicleParameter4Label">[Vehicle Parameter 4]</string>
     <string name="fragment_setup_vehicleImageDescription">Get help understanding this vehicle parameter.</string>
-    <string name="fragment_setup_setupParameter1Label">Setup Name:</string>
-    <string name="fragment_setup_setupParameter2Label">Setup Location:</string>
-    <string name="fragment_setup_setupParameter3Label">[Setup Parameter 3]</string>
-    <string name="fragment_setup_setupParameter4Label">[Setup Parameter 4]</string>
-    <string name="fragment_setup_setupImageDescription">Get help understanding this setup parameter.</string>
 
     /* 5. Help Fragment */
     <string name="fragment_help_title">Help</string>
@@ -55,13 +43,67 @@
     /* 6. String Arrays */
     <string-array name="fragment_main_vehicleSpinnerEntries">
         <item>Vehicle #1</item>
-        <item>Vehicle #2</item>
-        <item>Vehicle #3</item>
     </string-array>
     <string-array name="fragment_main_setupSpinnerEntries">
         <item>Setup #1</item>
-        <item>Setup #2</item>
-        <item>Setup #3</item>
     </string-array>
 
+    /* 7. VehicleExpandableListView */
+    <string name="vehicleexpandablelistviewadapter_group_general">General</string>
+        <string name="vehicleexpandablelistviewadapter_child_name">Vehicle Name</string>
+            <string name="vehicleexpandablelistviewadapter_child_name_help">[Vehicle Name Help]</string>
+        <string name="vehicleexpandablelistviewadapter_child_description">Vehicle Description</string>
+            <string name="vehicleexpandablelistviewadapter_child_description_help">[Vehicle Description Help]</string>
+    
+    /* 8. SetupExpandableListView */
+    <string name="setupexpandablelistviewadapter_group_general">General</string>
+        <string name="setupexpandablelistviewadapter_child_name">Setup Name</string>
+            <string name="setupexpandablelistviewadapter_child_name_help">[Setup Name Help]</string>
+        <string name="setupexpandablelistviewadapter_child_driver">Driver Name</string>
+            <string name="setupexpandablelistviewadapter_child_driver_help">[Driver Name Help]</string>
+        <string name="setupexpandablelistviewadapter_child_speed">Target Speed</string>
+            <string name="setupexpandablelistviewadapter_child_speed_help">[Target Speed Help]</string>
+    <string name="setupexpandablelistviewadapter_group_location">Location</string>
+        <string name="setupexpandablelistviewadapter_child_locationname">Location Name</string>
+            <string name="setupexpandablelistviewadapter_child_locationname_help">[Location Name Help]</string>
+        <string name="setupexpandablelistviewadapter_child_locationdesc">Location Description</string>
+            <string name="setupexpandablelistviewadapter_child_locationdesc_help">[Location Description Help]</string>
+        <string name="setupexpandablelistviewadapter_child_geolocation">Geolocation</string>
+            <string name="setupexpandablelistviewadapter_child_geolocation_help">[Geolocation Help]</string>
+    <string name="setupexpandablelistviewadapter_group_tires">Tires</string>
+        <string name="setupexpandablelistviewadapter_child_tirepressure">Tire Pressure</string>
+            <string name="setupexpandablelistviewadapter_child_tirepressure_help">[Tire Pressure Help]</string>
+        <string name="setupexpandablelistviewadapter_child_tirediameter">Tire Diameter</string>
+            <string name="setupexpandablelistviewadapter_child_tirediameter_help">[Tire Diameter Help]</string>
+        <string name="setupexpandablelistviewadapter_child_tirerollingdiameter">Tire Rolling Diameter</string>
+            <string name="setupexpandablelistviewadapter_child_tirerollingdiameter_help">[Tire Rolling Diameter Help]</string>
+        <string name="setupexpandablelistviewadapter_child_tirewidth">Tire Width</string>
+            <string name="setupexpandablelistviewadapter_child_tirewidth_help">[Tire Width Help]</string>
+    <string name="setupexpandablelistviewadapter_group_mass">Mass</string>
+        <string name="setupexpandablelistviewadapter_child_massvehicle">Vehicle Mass</string>
+            <string name="setupexpandablelistviewadapter_child_massvehicle_help">[Vehicle Mass Help]</string>
+        <string name="setupexpandablelistviewadapter_child_massfront">Front Unsprung Mass</string>
+            <string name="setupexpandablelistviewadapter_child_massfront_help">[Front Unsprung Mass]</string>
+        <string name="setupexpandablelistviewadapter_child_massback">Back Unsprung Mass</string>
+            <string name="setupexpandablelistviewadapter_child_massback_help">[Back Unsprung Mass]</string>
+    <string name="setupexpandablelistviewadapter_group_cog">Center of Gravity</string>
+        <string name="setupexpandablelistviewadapter_child_cogx">Center of Gravity (x)</string>
+            <string name="setupexpandablelistviewadapter_child_cogx_help">[Center of Gravity (x)]</string>
+        <string name="setupexpandablelistviewadapter_child_cogy">Center of Gravity (y)</string>
+            <string name="setupexpandablelistviewadapter_child_cogy_help">[Center of Gravity (y)]</string>
+        <string name="setupexpandablelistviewadapter_child_cogz">Center of Gravity Height</string>
+            <string name="setupexpandablelistviewadapter_child_cogz_help">[Center of Gravity Height]</string>
+    
+    /* 9. SuspensionDimensionExpandableListView */
+    <string name="suspensiondimensionexpandablelistviewadapter_group_frameMounts">Frame Mounts</string>
+    <string name="suspensiondiemnsionexpandablelistviewadapter_group_axleMounts">Axle Mounts</string>
+        <string name="suspensiondimensionexpandablelistviewadapter_child_x">X</string>
+            <string name="suspensiondimensionexpandablelistviewadapter_child_x_help">Forward distance from axle centerline to center of link mount.</string>
+        <string name="suspensiondimensionexpandablelistviewadapter_child_y">Y</string>
+            <string name="suspensiondimensionexpandablelistviewadapter_child_y_help">Center to center distance between link mounts divided by 2.</string>
+        <string name="suspensiondimensionexpandablelistviewadapter_child_z">Z</string>
+            <string name="suspensiondimensionexpandablelistviewadapter_child_z_help">Distance from ground to center of ground to link mount.</string>
+
+    /* 10. Group ListView */
+    <string name="listview_parent_setup_imageDescription">Image describing group topic.</string>
 </resources>
