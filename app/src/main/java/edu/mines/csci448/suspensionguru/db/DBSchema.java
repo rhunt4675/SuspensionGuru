@@ -115,7 +115,7 @@ public class DBSchema {
                         + Cols.LOWER_AXLE_Y + " REAL, "
                         + Cols.LOWER_AXLE_Z + " REAL, "
                         + "PRIMARY KEY (" + Cols.VEHICLE_ID + ", " + Cols.SETUP_ID + ") "
-                        + "FOREIGN KEY (" + Cols.VEHICLE_ID + ") REFERENCES " + VehicleTable.NAME + "(" + VehicleTable.Cols.ID + "), "
-                        + "FOREIGN KEY (" + Cols.SETUP_ID + ") REFERENCES " + SetupTable.NAME + "(" + SetupTable.Cols.ID + "))";
+                        + "FOREIGN KEY (" + Cols.VEHICLE_ID + ") REFERENCES " + VehicleTable.NAME + "(" + VehicleTable.Cols.ID + ") ON DELETE CASCADE, "
+                        + "FOREIGN KEY (" + Cols.SETUP_ID + ") REFERENCES " + SetupTable.NAME + "(" + SetupTable.Cols.ID + ") ON DELETE CASCADE)";
     }
 }

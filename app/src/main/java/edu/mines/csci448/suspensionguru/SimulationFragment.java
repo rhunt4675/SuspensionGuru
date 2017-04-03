@@ -12,16 +12,43 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-public class SimulationFragment extends Fragment {
-    private EditText _calc1, _calc2, _calc3, _calc4;
+import java.util.Locale;
 
-    public static SimulationFragment newInstance() {
-        return new SimulationFragment();
+import edu.mines.csci448.suspensionguru.data.Setup;
+import edu.mines.csci448.suspensionguru.data.Vehicle;
+
+public class SimulationFragment extends Fragment {
+    private static final String VEHICLE_BUNDLE = "vehicle";
+    private static final String SETUP_BUNDLE = "setup";
+
+    private Vehicle _vehicle;
+    private Setup _setup;
+    private EditText _antiSquatEditText, _rollCenterEditText, _rollAxisEditText, _otherCalcEditText;
+
+    public static SimulationFragment newInstance(String vehicleName, String setupName) {
+        SimulationFragment fragment = new SimulationFragment();
+
+        // Pass arguments to Fragment
+        Bundle arguments = new Bundle();
+        arguments.putString(VEHICLE_BUNDLE, vehicleName);
+        arguments.putString(SETUP_BUNDLE, setupName);
+        fragment.setArguments(arguments);
+
+        return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Read Bundle
+        if (getArguments() != null) {
+            String vehicleName = getArguments().getString(VEHICLE_BUNDLE);
+            String setupName = getArguments().getString(SETUP_BUNDLE);
+
+            _vehicle = MainFragment._vehicles.get(vehicleName);
+            _setup = MainFragment._setups.get(setupName);
+        }
 
         // Enable Up Navigation
         ActionBar actionBar = getActivity().getActionBar();
@@ -36,36 +63,40 @@ public class SimulationFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_simulation, container, false);
 
         /* Wire up Help Buttons */
-        ImageButton calc1Help = (ImageButton) view.findViewById(R.id.fragment_simulation_calculation1Help);
-        calc1Help.setOnClickListener(new View.OnClickListener() {
+        ImageButton antiSquatHelp = (ImageButton) view.findViewById(R.id.fragment_simulation_antiSquatHelp);
+        antiSquatHelp.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
-                startActivity(HelpActivity.getIntent(getActivity(), -1));
+                startActivity(HelpActivity.getIntent(getActivity(), R.string.fragment_help_text));
             }
         });
-        ImageButton calc2Help = (ImageButton) view.findViewById(R.id.fragment_simulation_calculation2Help);
-        calc2Help.setOnClickListener(new View.OnClickListener() {
+        ImageButton rollCenterHelp = (ImageButton) view.findViewById(R.id.fragment_simulation_rollCenterHelp);
+        rollCenterHelp.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
-                startActivity(HelpActivity.getIntent(getActivity(), -1));
+                startActivity(HelpActivity.getIntent(getActivity(), R.string.fragment_help_text));
             }
         });
-        ImageButton calc3Help = (ImageButton) view.findViewById(R.id.fragment_simulation_calculation3Help);
-        calc3Help.setOnClickListener(new View.OnClickListener() {
+        ImageButton rollAxisHelp = (ImageButton) view.findViewById(R.id.fragment_simulation_rollAxisHelp);
+        rollAxisHelp.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
-                startActivity(HelpActivity.getIntent(getActivity(), -1));
+                startActivity(HelpActivity.getIntent(getActivity(), R.string.fragment_help_text));
             }
         });
-        ImageButton calc4Help = (ImageButton) view.findViewById(R.id.fragment_simulation_calculation4Help);
-        calc4Help.setOnClickListener(new View.OnClickListener() {
+        ImageButton otherCalcHelp = (ImageButton) view.findViewById(R.id.fragment_simulation_otherCalcHelp);
+        otherCalcHelp.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
-                startActivity(HelpActivity.getIntent(getActivity(), -1));
+                startActivity(HelpActivity.getIntent(getActivity(), R.string.fragment_help_text));
             }
         });
 
         /* Wire up Input Parameter Fields */
-        _calc1 = (EditText) view.findViewById(R.id.fragment_simulation_calculation1Text);
-        _calc2 = (EditText) view.findViewById(R.id.fragment_simulation_calculation2Text);
-        _calc3 = (EditText) view.findViewById(R.id.fragment_simulation_calculation3Text);
-        _calc4 = (EditText) view.findViewById(R.id.fragment_simulation_calculation4Text);
+        // TODO: Use Real Formulas, instead of these stubs.
+        _antiSquatEditText = (EditText) view.findViewById(R.id.fragment_simulation_antiSquatText);
+        _antiSquatEditText.setText(String.format(Locale.getDefault(), "%.1f", Math.exp(1) * (_setup.getTireWidth() == null ? 2.5 : _setup.getTirePressure())));
+        _rollCenterEditText = (EditText) view.findViewById(R.id.fragment_simulation_rollCenterText);
+        _rollCenterEditText.setText(String.format(Locale.getDefault(), "%.1f", Math.PI / (_setup.getCenterOfGravityHeight() == null ? 7.8 : _setup.getCenterOfGravityHeight())));
+        _rollAxisEditText = (EditText) view.findViewById(R.id.fragment_simulation_rollAxisText);
+        _rollAxisEditText.setText(String.format(Locale.getDefault(), "%.1f", Math.PI * (_setup.getMassVehicle() == null ? 85.2 : _setup.getMassVehicle())));
+        _otherCalcEditText = (EditText) view.findViewById(R.id.fragment_simulation_otherCalcText);
 
         /* Wire up Refresh Button */
         Button refresh = (Button) view.findViewById(R.id.fragment_simulation_refreshButton);

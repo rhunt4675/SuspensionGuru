@@ -5,12 +5,23 @@ import android.content.Intent;
 import android.support.v4.app.Fragment;
 
 public class SimulationActivity extends SingleFragmentActivity {
+    private static final String VEHICLE_INTENT_EXTRA = "vehicle";
+    private static final String SETUP_INTENT_EXTRA = "setup";
+
     @Override
     protected Fragment createFragment() {
-        return SimulationFragment.newInstance();
+        // Extract the Target Vehicle & Setup
+        Intent intent = getIntent();
+        String vehicleName = intent.getStringExtra(VEHICLE_INTENT_EXTRA);
+        String setupName = intent.getStringExtra(SETUP_INTENT_EXTRA);
+
+        // Create the Fragment
+        return SimulationFragment.newInstance(vehicleName, setupName);
     }
 
-    public static Intent getIntent(Context context) {
-        return new Intent(context, SimulationActivity.class);
-    }
+    public static Intent getIntent(Context context, String vehicleName, String setupName) {
+        Intent intent =  new Intent(context, SimulationActivity.class);
+        intent.putExtra(VEHICLE_INTENT_EXTRA, vehicleName);
+        intent.putExtra(SETUP_INTENT_EXTRA, setupName);
+        return intent;    }
 }

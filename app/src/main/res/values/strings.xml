@@ -21,12 +21,12 @@
 
     /* 3. Simulation Fragment */
     <string name="fragment_simulation_title">Simulation</string>
-    <string name="fragment_simulation_calculation1Label">Anti-Squat:</string>
-    <string name="fragment_simulation_calculation2Label">Roll Center Height:</string>
-    <string name="fragment_simulation_calculation3Label">Roll Axis Angle:</string>
-    <string name="fragment_simulation_calculation4Label">Other Calc Result:</string>
+    <string name="fragment_simulation_antiSquatLabel">Anti-Squat:</string>
+    <string name="fragment_simulation_rollCenterLabel">Roll Center Height:</string>
+    <string name="fragment_simulation_rollAxisLabel">Roll Axis Angle:</string>
+    <string name="fragment_simulation_otherCalcLabel">Other Calc Result:</string>
     <string name="fragment_simulation_refreshButtonLabel">Refresh</string>
-    <string name="fragment_simulation_imageDescription2">Get help understanding this calculation.</string>
+    <string name="fragment_simulation_imageDescription">Get help understanding this calculation.</string>
 
     /* 4. Setup Fragment */
     <string name="fragment_setup_title">Vehicle/Setup Details</string>
@@ -41,12 +41,6 @@
         but the message will be customized to the question at hand.</string>
 
     /* 6. String Arrays */
-    <string-array name="fragment_main_vehicleSpinnerEntries">
-        <item>Vehicle #1</item>
-    </string-array>
-    <string-array name="fragment_main_setupSpinnerEntries">
-        <item>Setup #1</item>
-    </string-array>
 
     /* 7. VehicleExpandableListView */
     <string name="vehicleexpandablelistviewadapter_group_general">General</string>

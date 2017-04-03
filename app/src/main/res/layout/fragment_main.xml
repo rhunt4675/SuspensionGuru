@@ -59,8 +59,7 @@
             android:layout_height="?android:attr/listPreferredItemHeightSmall"
             android:layout_toStartOf="@id/fragment_main_addVehicleButton"
             android:layout_centerInParent="true"
-            android:textAlignment="viewEnd"
-            android:entries="@array/fragment_main_vehicleSpinnerEntries" />
+            android:textAlignment="viewEnd" />
 
         <Space
             android:layout_width="wrap_content"
@@ -71,6 +70,8 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/fragment_main_setupSelectionRelativeLayout"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -113,8 +114,7 @@
             android:layout_height="?android:attr/listPreferredItemHeightSmall"
             android:layout_toStartOf="@id/fragment_main_addSetupButton"
             android:textAlignment="viewEnd"
-            android:layout_centerInParent="true"
-            android:entries="@array/fragment_main_setupSpinnerEntries"/>
+            android:layout_centerInParent="true" />
 
         <Space
             android:layout_width="wrap_content"
@@ -127,12 +127,14 @@
         android:id="@+id/fragment_main_setupButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:text="@string/fragment_main_setupButtonLabel"/>
 
     <Button
         android:id="@+id/fragment_main_dimensionsButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:text="@string/fragment_main_dimensionsButtonLabel"/>
 
     <Space
@@ -145,6 +147,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
+        android:visibility="gone"
         android:text="@string/fragment_main_simulateButtonLabel"/>
 
 </LinearLayout>

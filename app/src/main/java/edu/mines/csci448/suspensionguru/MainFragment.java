@@ -8,10 +8,12 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
@@ -38,12 +40,48 @@ public class MainFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
-        /* Wire up Spinners */
+        /* Perform UI Lookups */
+        final ImageButton addVehicle = (ImageButton) view.findViewById(R.id.fragment_main_addVehicleButton);
+        final ImageButton addSetup = (ImageButton) view.findViewById(R.id.fragment_main_addSetupButton);
+        final ImageButton deleteVehicle = (ImageButton) view.findViewById(R.id.fragment_main_deleteVehicleButton);
+        final ImageButton deleteSetup = (ImageButton) view.findViewById(R.id.fragment_main_deleteSetupButton);
+        final RelativeLayout setupSelectionRelativeLayout
+                = (RelativeLayout) view.findViewById(R.id.fragment_main_setupSelectionRelativeLayout);
+        final Button editVehicleSetupButton = (Button) view.findViewById(R.id.fragment_main_setupButton);
+        final Button editDimensionsButton = (Button) view.findViewById(R.id.fragment_main_dimensionsButton);
+        final Button simulateButton = (Button) view.findViewById(R.id.fragment_main_simulateButton);
         _vehicleSpinner = (Spinner) view.findViewById(R.id.fragment_main_vehicleSpinner);
         _setupSpinner = (Spinner) view.findViewById(R.id.fragment_main_setupSpinner);
 
+        /* Wire up Spinners */
+        _vehicleSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                setupSelectionRelativeLayout.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                setupSelectionRelativeLayout.setVisibility(View.GONE);
+            }
+        });
+        _setupSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                editVehicleSetupButton.setVisibility(View.VISIBLE);
+                editDimensionsButton.setVisibility(View.VISIBLE);
+                simulateButton.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                editVehicleSetupButton.setVisibility(View.GONE);
+                editDimensionsButton.setVisibility(View.GONE);
+                simulateButton.setVisibility(View.GONE);
+            }
+        });
+
         /* Wire Up Add Vehicle/Setup Button */
-        ImageButton addVehicle = (ImageButton) view.findViewById(R.id.fragment_main_addVehicleButton);
         addVehicle.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
 
@@ -74,7 +112,6 @@ public class MainFragment extends Fragment {
                 }).show();
             }
         });
-        ImageButton addSetup = (ImageButton) view.findViewById(R.id.fragment_main_addSetupButton);
         addSetup.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
 
@@ -107,7 +144,6 @@ public class MainFragment extends Fragment {
         });
 
         /* Wire Up Delete Vehicle/Setup Button */
-        ImageButton deleteVehicle = (ImageButton) view.findViewById(R.id.fragment_main_deleteVehicleButton);
         deleteVehicle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -132,7 +168,6 @@ public class MainFragment extends Fragment {
                         .show();
             }
         });
-        ImageButton deleteSetup = (ImageButton) view.findViewById(R.id.fragment_main_deleteSetupButton);
         deleteSetup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -159,8 +194,7 @@ public class MainFragment extends Fragment {
         });
 
         /* Wire up Vehicle/Setup Details Button */
-        Button setupDetails = (Button) view.findViewById(R.id.fragment_main_setupButton);
-        setupDetails.setOnClickListener(new View.OnClickListener() {
+        editVehicleSetupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (_vehicleSpinner.getSelectedItem() != null && _setupSpinner.getSelectedItem() != null)
@@ -178,8 +212,7 @@ public class MainFragment extends Fragment {
         });
 
         /* Wire up Dimensions Button */
-        Button dimension = (Button) view.findViewById(R.id.fragment_main_dimensionsButton);
-        dimension.setOnClickListener(new View.OnClickListener() {
+        editDimensionsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (_vehicleSpinner.getSelectedItem() != null && _setupSpinner.getSelectedItem() != null)
@@ -197,10 +230,19 @@ public class MainFragment extends Fragment {
         });
 
         /* Wire up Simulate Button */
-        Button simulate = (Button) view.findViewById(R.id.fragment_main_simulateButton);
-        simulate.setOnClickListener(new View.OnClickListener() {
+        simulateButton.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
-                startActivity(SimulationActivity.getIntent(getActivity()));
+                if (_vehicleSpinner.getSelectedItem() != null && _setupSpinner.getSelectedItem() != null)
+                    startActivity(SimulationActivity.getIntent(getActivity(),
+                            (String) _vehicleSpinner.getSelectedItem(), (String) _setupSpinner.getSelectedItem()));
+                else {
+                    new AlertDialog.Builder(MainFragment.this.getContext())
+                            .setTitle("Invalid Selection")
+                            .setMessage("Select a vehicle and setup configuration from the list above.")
+                            .setPositiveButton(android.R.string.ok, null)
+                            .setCancelable(true)
+                            .show();
+                }
             }
         });
 
@@ -210,6 +252,10 @@ public class MainFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+
+        // Backup Selected Items;
+        int selectedVehiclePosition = _vehicleSpinner.getSelectedItemPosition();
+        int selectedSetupPosition = _setupSpinner.getSelectedItemPosition();
 
         // Populate Vehicle/Setup Maps
         _vehicles.clear(); _setups.clear();
@@ -221,6 +267,12 @@ public class MainFragment extends Fragment {
 
         // Refresh all Spinners
         refreshSpinners();
+
+        // Restore Selected Items
+        if (selectedVehiclePosition != AdapterView.INVALID_POSITION)
+            _vehicleSpinner.setSelection(selectedVehiclePosition);
+        if (selectedSetupPosition != AdapterView.INVALID_POSITION)
+            _setupSpinner.setSelection(selectedSetupPosition);
     }
 
     @Override

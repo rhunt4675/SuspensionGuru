@@ -129,7 +129,7 @@ public class Setup {
         if (_id == null) {
 
             // Create new record
-            db.insert(DBSchema.SetupTable.NAME,     /* Table Name */
+            _id = (int) db.insert(DBSchema.SetupTable.NAME,     /* Table Name */
                     null,                           /* Null Column Hack */
                     getContentValues()              /* Content Values */);
 

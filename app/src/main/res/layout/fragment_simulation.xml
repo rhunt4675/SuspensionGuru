@@ -24,26 +24,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:labelFor="@+id/fragment_simulation_calculation1Text"
-            android:text="@string/fragment_simulation_calculation1Label"
+            android:labelFor="@+id/fragment_simulation_antiSquatText"
+            android:text="@string/fragment_simulation_antiSquatLabel"
             style="?android:listSeparatorTextViewStyle"/>
 
         <EditText
-            android:id="@id/fragment_simulation_calculation1Text"
+            android:id="@+id/fragment_simulation_antiSquatText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:inputType="none"
+            android:gravity="end"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             android:layout_weight="1"
             style=""/>
 
         <ImageButton
-            android:id="@+id/fragment_simulation_calculation1Help"
+            android:id="@+id/fragment_simulation_antiSquatHelp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:src="@android:drawable/ic_menu_help"
-            android:contentDescription="@string/fragment_simulation_imageDescription2"/>
+            android:contentDescription="@string/fragment_simulation_imageDescription"/>
     </LinearLayout>
 
     <LinearLayout
@@ -54,26 +58,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:labelFor="@+id/fragment_simulation_calculation2Text"
-            android:text="@string/fragment_simulation_calculation2Label"
+            android:labelFor="@+id/fragment_simulation_rollCenterText"
+            android:text="@string/fragment_simulation_rollCenterLabel"
             style="?android:listSeparatorTextViewStyle"/>
 
         <EditText
-            android:id="@id/fragment_simulation_calculation2Text"
+            android:id="@+id/fragment_simulation_rollCenterText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:inputType="none"
+            android:gravity="end"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             android:layout_weight="1"
             style=""/>
 
         <ImageButton
-            android:id="@+id/fragment_simulation_calculation2Help"
+            android:id="@+id/fragment_simulation_rollCenterHelp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:src="@android:drawable/ic_menu_help"
-            android:contentDescription="@string/fragment_simulation_imageDescription2"/>
+            android:contentDescription="@string/fragment_simulation_imageDescription"/>
     </LinearLayout>
 
     <LinearLayout
@@ -84,26 +92,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:labelFor="@+id/fragment_simulation_calculation3Text"
-            android:text="@string/fragment_simulation_calculation3Label"
+            android:labelFor="@+id/fragment_simulation_rollAxisText"
+            android:text="@string/fragment_simulation_rollAxisLabel"
             style="?android:listSeparatorTextViewStyle"/>
 
         <EditText
-            android:id="@id/fragment_simulation_calculation3Text"
+            android:id="@+id/fragment_simulation_rollAxisText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:inputType="none"
+            android:gravity="end"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             android:layout_weight="1"
             style=""/>
 
         <ImageButton
-            android:id="@+id/fragment_simulation_calculation3Help"
+            android:id="@+id/fragment_simulation_rollAxisHelp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:src="@android:drawable/ic_menu_help"
-            android:contentDescription="@string/fragment_simulation_imageDescription2"/>
+            android:contentDescription="@string/fragment_simulation_imageDescription"/>
     </LinearLayout>
 
     <LinearLayout
@@ -114,26 +126,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:labelFor="@+id/fragment_simulation_calculation4Text"
-            android:text="@string/fragment_simulation_calculation4Label"
+            android:labelFor="@+id/fragment_simulation_otherCalcText"
+            android:text="@string/fragment_simulation_otherCalcLabel"
             style="?android:listSeparatorTextViewStyle"/>
 
         <EditText
-            android:id="@id/fragment_simulation_calculation4Text"
+            android:id="@+id/fragment_simulation_otherCalcText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:inputType="none"
+            android:gravity="end"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             android:layout_weight="1"
             style=""/>
 
         <ImageButton
-            android:id="@+id/fragment_simulation_calculation4Help"
+            android:id="@+id/fragment_simulation_otherCalcHelp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:src="@android:drawable/ic_menu_help"
-            android:contentDescription="@string/fragment_simulation_imageDescription2"/>
+            android:contentDescription="@string/fragment_simulation_imageDescription"/>
     </LinearLayout>
 
     <Space

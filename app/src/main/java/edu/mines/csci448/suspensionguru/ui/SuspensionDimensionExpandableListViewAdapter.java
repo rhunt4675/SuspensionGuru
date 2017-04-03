@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.database.DataSetObserver;
 import android.support.v7.app.AlertDialog;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -120,6 +121,7 @@ public class SuspensionDimensionExpandableListViewAdapter extends BaseExpandable
                 dialogLabel.setText(childTitleId);
                 final EditText dialogEdit = (EditText) view.findViewById(R.id.dialog_string_edit_parameterValue);
                 dialogEdit.setText(parameter.getText().toString());
+                dialogEdit.setRawInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
 
                 // Generate Dialog
                 AlertDialog alertDialog = new AlertDialog.Builder(_inflater.getContext())

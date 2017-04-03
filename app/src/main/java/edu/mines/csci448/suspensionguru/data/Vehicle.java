@@ -78,7 +78,7 @@ public class Vehicle {
         if (_id == null) {
 
             // Create new record
-            db.insert(DBSchema.VehicleTable.NAME,       /* Table Name */
+            _id = (int) db.insert(DBSchema.VehicleTable.NAME,       /* Table Name */
                         null,                           /* Null Column Hack */
                         getContentValues()              /* Content Values */);
 
