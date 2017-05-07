@@ -10,6 +10,9 @@ public class MainActivity extends SingleFragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         DBHelper.initDB(this);
+
+        if (getSupportActionBar() != null)
+            getSupportActionBar().hide();
     }
 
     @Override

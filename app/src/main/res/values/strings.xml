@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">SuspensionGuru</string>
+    <string name="app_title">Suspension Guru v1.0</string>
 
     /* 1. Main Fragment */
     <string name="fragment_main_vehicleSpinnerLabel">Vehicle</string>

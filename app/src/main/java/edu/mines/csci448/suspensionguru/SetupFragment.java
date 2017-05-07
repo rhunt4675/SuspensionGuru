@@ -24,6 +24,8 @@ public class SetupFragment extends Fragment {
     private Vehicle _vehicle;
     private Setup _setup;
 
+    private static int _expandedChild = 0;
+
     public static SetupFragment newInstance(String vehicleName, String setupName) {
         SetupFragment fragment = new SetupFragment();
 
@@ -66,6 +68,28 @@ public class SetupFragment extends Fragment {
         _vehicleELV.setAdapter(new VehicleExpandableListViewAdapter(_vehicle, getContext()));
         _setupELV = (ExpandableListView) view.findViewById(R.id.fragment_setup_setupExpandableListView);
         _setupELV.setAdapter(new SetupExpandableListViewAdapter(_setup, getContext()));
+
+        /* Mutual Exclusion in Child Expansion */
+        _vehicleELV.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+            @Override
+            public void onGroupExpand(int groupPosition) {
+                if (groupPosition != _expandedChild)
+                    _vehicleELV.collapseGroup(_expandedChild);
+                _setupELV.collapseGroup(_expandedChild);
+
+                _expandedChild = groupPosition;
+            }
+        });
+        _setupELV.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+            @Override
+            public void onGroupExpand(int groupPosition) {
+                _vehicleELV.collapseGroup(_expandedChild);
+                if (groupPosition != _expandedChild)
+                    _setupELV.collapseGroup(_expandedChild);
+
+                _expandedChild = groupPosition;
+            }
+        });
 
         return view;
     }

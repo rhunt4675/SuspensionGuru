@@ -6,6 +6,16 @@
     android:layout_margin="@dimen/single_fragment_frameMargin"
     tools:context="edu.mines.csci448.suspensionguru.MainFragment">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif"
+        android:text="@string/app_title"/>
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="200dp"
@@ -146,7 +156,7 @@
         android:id="@+id/fragment_main_simulateButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
+        android:backgroundTint="@color/colorPrimary"
         android:visibility="gone"
         android:text="@string/fragment_main_simulateButtonLabel"/>
 

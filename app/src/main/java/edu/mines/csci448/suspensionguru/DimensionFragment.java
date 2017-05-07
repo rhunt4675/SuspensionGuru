@@ -20,6 +20,7 @@ public class DimensionFragment extends Fragment {
     private SuspensionDimension _suspensionDimension;
 
     private ExpandableListView _upperELV, _lowerELV;
+    private static int _expandedChild = 0;
 
     public static DimensionFragment newInstance(String vehicleName, String setupName) {
         DimensionFragment fragment =  new DimensionFragment();
@@ -64,6 +65,28 @@ public class DimensionFragment extends Fragment {
         _upperELV.setAdapter(new SuspensionDimensionExpandableListViewAdapter(_suspensionDimension, true, getContext()));
         _lowerELV = (ExpandableListView) view.findViewById(R.id.fragment_dimension_lowerLinkExpandableListView);
         _lowerELV.setAdapter(new SuspensionDimensionExpandableListViewAdapter(_suspensionDimension, false, getContext()));
+
+        /* Mutual Exclusion in Child Expansion */
+        _upperELV.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+            @Override
+            public void onGroupExpand(int groupPosition) {
+                if (groupPosition != _expandedChild)
+                    _upperELV.collapseGroup(_expandedChild);
+                _lowerELV.collapseGroup(_expandedChild);
+
+                _expandedChild = groupPosition;
+            }
+        });
+        _lowerELV.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+            @Override
+            public void onGroupExpand(int groupPosition) {
+                _upperELV.collapseGroup(_expandedChild);
+                if (groupPosition != _expandedChild)
+                    _lowerELV.collapseGroup(_expandedChild);
+
+                _expandedChild = groupPosition;
+            }
+        });
 
         return view;
     }
