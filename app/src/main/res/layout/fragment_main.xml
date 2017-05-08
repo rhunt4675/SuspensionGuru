@@ -16,11 +16,26 @@
         android:fontFamily="sans-serif"
         android:text="@string/app_title"/>
 
-    <ImageView
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/fragment_main_vehicleImageLayout"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:src="@drawable/rockcrawler"
-        android:contentDescription="@string/fragment_main_imageDescription"/>
+        android:layout_height="200dp">
+
+        <ImageView
+            android:id="@+id/fragment_main_vehicleImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/fragment_main_imageDescription"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fragment_main_takePictureActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_gravity="end|bottom"
+            android:src="@android:drawable/ic_menu_camera"/>
+
+    </android.support.design.widget.CoordinatorLayout>
 
     <Space
         android:layout_width="wrap_content"
