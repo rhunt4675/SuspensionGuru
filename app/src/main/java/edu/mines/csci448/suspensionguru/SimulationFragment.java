@@ -28,15 +28,29 @@ public class SimulationFragment extends Fragment {
     private EditText _antiSquatEditText, _rollCenterEditText, _rollAxisEditText, _otherCalcEditText;
 
     // AntiSquat Calcs
-    private double lowerLinkSlope = 0;
-    private double lowerLinkIntercept = 0;
-    private double upperLinkSlope = 0;
-    private double upperLinkIntercept = 0;
+    private double lowerLinkSlopeXZ = 0;
+    private double lowerLinkZIntercept = 0;
+    private double upperLinkSlopeXZ = 0;
+    private double upperLinkZIntercept = 0;
     private double instantCenterX = 0;
     private double instantCenterZ = 0;
     private double antiSquatSlope = 0;
     private double antiSquatHeight = 0;      // Height of the 100% AS Line at x=instantCenterX
     private double antiSquatPercentage = 0;
+
+    // Roll Center Height
+    private double lowerLinkSlopeXY = 0;
+    private double lowerLinkYIntercept = 0;
+    private double upperLinkSlopeXY = 0;
+    private double upperLinkYIntercept = 0;
+    private double lowerLinkXIntersect = 0;
+    private double lowerLinkZIntersect = 0;
+    private double upperLinkXIntersect = 0;
+    private double upperLinkZIntersect = 0;
+    private double rollCenterSlopeXZ = 0;
+    private double rollCenterZIntercept = 0;
+    private double rollCenterHeight = 0;
+
 
 
     public static SimulationFragment newInstance(String vehicleName, String setupName) {
@@ -104,32 +118,55 @@ public class SimulationFragment extends Fragment {
         });
 
         /* Wire up Input Parameter Fields */
-        // TODO: Use Real Formulas, instead of these stubs.
 
         // CalculateAntiSquat
-        lowerLinkSlope = ( (_suspensionDimension.getLowerFrameZ() - _suspensionDimension.getLowerAxleZ()) /
+        lowerLinkSlopeXZ = ( (_suspensionDimension.getLowerFrameZ() - _suspensionDimension.getLowerAxleZ()) /
                            (_suspensionDimension.getLowerFrameX() - _suspensionDimension.getLowerAxleX()) );
 
-        upperLinkSlope = ( (_suspensionDimension.getUpperFrameZ() - _suspensionDimension.getUpperAxleZ()) /
+        upperLinkSlopeXZ = ( (_suspensionDimension.getUpperFrameZ() - _suspensionDimension.getUpperAxleZ()) /
                            (_suspensionDimension.getUpperFrameX() - _suspensionDimension.getUpperAxleX()) );
 
-        lowerLinkIntercept = _suspensionDimension.getLowerFrameZ() - (lowerLinkSlope * _suspensionDimension.getLowerFrameX());
-        upperLinkIntercept = _suspensionDimension.getUpperFrameZ() - (upperLinkSlope * _suspensionDimension.getUpperFrameX());
+        lowerLinkZIntercept = _suspensionDimension.getLowerFrameZ() - (lowerLinkSlopeXZ * _suspensionDimension.getLowerFrameX());
+        upperLinkZIntercept = _suspensionDimension.getUpperFrameZ() - (upperLinkSlopeXZ * _suspensionDimension.getUpperFrameX());
 
-        instantCenterX = (lowerLinkIntercept - upperLinkIntercept) / (upperLinkSlope - lowerLinkSlope);
-        instantCenterZ = (lowerLinkSlope * instantCenterX) + lowerLinkIntercept;
+        instantCenterX = (lowerLinkZIntercept - upperLinkZIntercept) / (upperLinkSlopeXZ - lowerLinkSlopeXZ);
+        instantCenterZ = (lowerLinkSlopeXZ * instantCenterX) + lowerLinkZIntercept;
 
         antiSquatSlope = _setup.getCenterOfGravityHeight() / _setup.getCenterOfGravityY(); // TODO Center of Gravity Y should be wheel base. Add variable later.
         antiSquatHeight = antiSquatSlope * instantCenterX;
         antiSquatPercentage = instantCenterZ / antiSquatHeight;
 
+        // Calculate Roll Center Height
+        lowerLinkSlopeXY = ( (_suspensionDimension.getLowerFrameY() - _suspensionDimension.getLowerAxleY()) /
+                (_suspensionDimension.getLowerFrameX() - _suspensionDimension.getLowerAxleX()) );
+
+        upperLinkSlopeXY = ( (_suspensionDimension.getUpperFrameY() - _suspensionDimension.getUpperAxleY()) /
+                (_suspensionDimension.getUpperFrameX() - _suspensionDimension.getUpperAxleX()) );
+
+        lowerLinkYIntercept = _suspensionDimension.getLowerFrameY() - (lowerLinkSlopeXY * _suspensionDimension.getLowerFrameX());
+        upperLinkYIntercept = _suspensionDimension.getUpperFrameY() - (upperLinkSlopeXY * _suspensionDimension.getUpperFrameX());
+
+        lowerLinkXIntersect = (-1 * lowerLinkYIntercept) / lowerLinkSlopeXY;
+        upperLinkXIntersect = (-1 * upperLinkYIntercept) / upperLinkSlopeXY;
+
+        lowerLinkZIntersect = (lowerLinkSlopeXZ * lowerLinkXIntersect) + lowerLinkZIntercept;
+        upperLinkZIntersect = (upperLinkSlopeXZ * upperLinkXIntersect) + upperLinkZIntercept;
+
+        rollCenterSlopeXZ = ( (lowerLinkZIntersect - upperLinkZIntersect) /
+                              (lowerLinkXIntersect - upperLinkXIntersect));
+
+        rollCenterZIntercept = lowerLinkZIntersect - (rollCenterSlopeXZ * lowerLinkXIntersect);
+        rollCenterHeight = rollCenterZIntercept;
+
+
+
         // Display Results
         _antiSquatEditText = (EditText) view.findViewById(R.id.fragment_simulation_antiSquatText);
         _antiSquatEditText.setText(String.format(Locale.getDefault(), "%.1f", (antiSquatPercentage * 100)));
         _rollCenterEditText = (EditText) view.findViewById(R.id.fragment_simulation_rollCenterText);
-        _rollCenterEditText.setText(String.format(Locale.getDefault(), "%.1f", Math.PI / (_setup.getCenterOfGravityHeight() == null ? 7.8 : _setup.getCenterOfGravityHeight())));
+        _rollCenterEditText.setText(String.format(Locale.getDefault(), "%.1f", rollCenterHeight));
         _rollAxisEditText = (EditText) view.findViewById(R.id.fragment_simulation_rollAxisText);
-        _rollAxisEditText.setText(String.format(Locale.getDefault(), "%.1f", Math.PI * (_setup.getMassVehicle() == null ? 85.2 : _setup.getMassVehicle())));
+        _rollAxisEditText.setText(String.format(Locale.getDefault(), "%.1f", Math.toDegrees(Math.atan(rollCenterSlopeXZ))));
         _otherCalcEditText = (EditText) view.findViewById(R.id.fragment_simulation_otherCalcText);
 
         /* Wire up Refresh Button */
