@@ -28,11 +28,22 @@ public class SuspensionDimension {
     private Double _lowerAxleY;
     private Double _lowerAxleZ;
 
+    /**
+     * (Private) constructor for existing suspension dimension.
+     *
+     * @param vehicleId ID of vehicle in database.
+     * @param setupId ID of setup in database.
+     */
     private SuspensionDimension(Integer vehicleId, Integer setupId) {
         _vehicleId = vehicleId;
         _setupId = setupId;
     }
 
+    /**
+     * Generate collection of values to be inserted into the database.
+     *
+     * @return ContentValues
+     */
     private ContentValues getContentValues() {
         ContentValues result = new ContentValues();
         result.put(DBSchema.SuspensionTable.Cols.ID, _id);
@@ -53,6 +64,14 @@ public class SuspensionDimension {
         return result;
     }
 
+    /**
+     * Get a suspension dimension object from the database.
+     *
+     * @param vehicle Vehicle
+     * @param setup Setup
+     * @param context Context
+     * @return SuspensionDimension from database
+     */
     public static SuspensionDimension getSuspensionDimension(Vehicle vehicle, Setup setup, Context context) {
         // Local Variables
         Cursor cursor = null;
@@ -99,6 +118,11 @@ public class SuspensionDimension {
         }
     }
 
+    /**
+     * Save suspension dimension object to database.
+     *
+     * @param context Context
+     */
     public void saveSuspensionDimension(Context context) {
         // Acquire DB Handle
         SQLiteDatabase db = DBHelper.getInstance(context).getWritableDatabase();
@@ -126,6 +150,11 @@ public class SuspensionDimension {
         }
     }
 
+    /**
+     * Delete suspension dimension object from the database.
+     *
+     * @param context Context
+     */
     public void deleteSuspensionDimension(Context context) {
         // Acquire DB Handle
         SQLiteDatabase db = DBHelper.getInstance(context).getWritableDatabase();

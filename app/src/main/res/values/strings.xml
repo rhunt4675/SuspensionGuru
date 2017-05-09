@@ -101,4 +101,5 @@
 
     /* 10. Group ListView */
     <string name="listview_parent_setup_imageDescription">Image describing group topic.</string>
+    <string name="listview_parent_setup_imageDescription2">Get user\'s current location.</string>
 </resources>

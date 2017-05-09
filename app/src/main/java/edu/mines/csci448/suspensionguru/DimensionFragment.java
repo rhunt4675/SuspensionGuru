@@ -22,6 +22,13 @@ public class DimensionFragment extends Fragment {
     private ExpandableListView _upperELV, _lowerELV;
     private static int _expandedChild = 0;
 
+    /**
+     * Create fragment.
+     *
+     * @param vehicleName Vehicle
+     * @param setupName Setup
+     * @return
+     */
     public static DimensionFragment newInstance(String vehicleName, String setupName) {
         DimensionFragment fragment =  new DimensionFragment();
 
@@ -34,6 +41,11 @@ public class DimensionFragment extends Fragment {
         return fragment;
     }
 
+    /**
+     * Lifecycle event.
+     *
+     * @param savedInstanceState Saved state.
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +66,14 @@ public class DimensionFragment extends Fragment {
             actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
+    /**
+     * Lifecycle event.
+     *
+     * @param inflater Inflater
+     * @param container Container
+     * @param savedInstanceState Saved state.
+     * @return View
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

@@ -1,21 +1,33 @@
 package edu.mines.csci448.suspensionguru;
 
 
+import android.Manifest;
 import android.app.ActionBar;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
 
 import edu.mines.csci448.suspensionguru.data.Setup;
 import edu.mines.csci448.suspensionguru.data.Vehicle;
 import edu.mines.csci448.suspensionguru.ui.SetupExpandableListViewAdapter;
 import edu.mines.csci448.suspensionguru.ui.VehicleExpandableListViewAdapter;
 
-public class SetupFragment extends Fragment {
+public class SetupFragment extends Fragment implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+    private static final int PERM_REQUEST = 1;
     private static final String VEHICLE_BUNDLE = "vehicle";
     private static final String SETUP_BUNDLE = "setup";
 
@@ -23,6 +35,8 @@ public class SetupFragment extends Fragment {
     private ExpandableListView _vehicleELV, _setupELV;
     private Vehicle _vehicle;
     private Setup _setup;
+
+    private GoogleApiClient _googleApiClient = null;
 
     private static int _expandedChild = 0;
 
@@ -55,6 +69,14 @@ public class SetupFragment extends Fragment {
         ActionBar actionBar = getActivity().getActionBar();
         if (actionBar != null)
             actionBar.setDisplayHomeAsUpEnabled(true);
+
+        // Google API Client
+        if (_googleApiClient == null)
+            _googleApiClient = new GoogleApiClient.Builder(getContext())
+                    .addConnectionCallbacks(this)
+                    .addOnConnectionFailedListener(this)
+                    .addApi(LocationServices.API)
+                    .build();
     }
 
     @Override
@@ -67,7 +89,7 @@ public class SetupFragment extends Fragment {
         _vehicleELV = (ExpandableListView) view.findViewById(R.id.fragment_setup_vehicleExpandableListView);
         _vehicleELV.setAdapter(new VehicleExpandableListViewAdapter(_vehicle, getContext()));
         _setupELV = (ExpandableListView) view.findViewById(R.id.fragment_setup_setupExpandableListView);
-        _setupELV.setAdapter(new SetupExpandableListViewAdapter(_setup, getContext()));
+        _setupELV.setAdapter(new SetupExpandableListViewAdapter(_setup, getContext(), this));
 
         /* Mutual Exclusion in Child Expansion */
         _vehicleELV.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
@@ -94,4 +116,65 @@ public class SetupFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onStart() {
+        _googleApiClient.connect();
+        super.onStart();
+    }
+
+    @Override
+    public void onStop() {
+        _googleApiClient.disconnect();
+        super.onStop();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == PERM_REQUEST) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                processLocation();
+            } else {
+                Toast.makeText(getContext(), "Location permission denied...", Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+
+    public void getLocation() {
+        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, PERM_REQUEST);
+        } else {
+            processLocation();
+        }
+    }
+
+    public void processLocation() {
+        try {
+            if (_googleApiClient.isConnected()) {
+                Location lastLocation = LocationServices.FusedLocationApi.getLastLocation(_googleApiClient);
+                if (lastLocation != null) {
+                    ((SetupExpandableListViewAdapter) _setupELV.getExpandableListAdapter()).setLocation(
+                            lastLocation.getLatitude(), lastLocation.getLongitude()
+                    );
+                }
+            }
+        } catch (SecurityException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
 }

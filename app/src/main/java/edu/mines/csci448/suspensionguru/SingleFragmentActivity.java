@@ -8,11 +8,20 @@ import android.support.v7.app.AppCompatActivity;
 
 public abstract class SingleFragmentActivity extends AppCompatActivity {
 
+    /**
+     * Get the ID of the layout.
+     * @return
+     */
     @LayoutRes
     protected int getLayoutResId() {
         return R.layout.activity_fragment;
     }
 
+    /**
+     * Lifecycle event
+     *
+     * @param savedInstanceState Saved instance state.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,5 +39,10 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Force descendants to implement this.
+     *
+     * @return Fragment to add to layout.
+     */
     protected abstract Fragment createFragment();
 }

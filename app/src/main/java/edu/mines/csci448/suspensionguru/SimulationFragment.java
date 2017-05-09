@@ -119,44 +119,49 @@ public class SimulationFragment extends Fragment {
 
         /* Wire up Input Parameter Fields */
 
-        // CalculateAntiSquat
-        lowerLinkSlopeXZ = ( (_suspensionDimension.getLowerFrameZ() - _suspensionDimension.getLowerAxleZ()) /
-                           (_suspensionDimension.getLowerFrameX() - _suspensionDimension.getLowerAxleX()) );
+        if (_suspensionDimension.getLowerFrameX() != null && _suspensionDimension.getLowerFrameY() != null && _suspensionDimension.getLowerFrameZ() != null
+                && _suspensionDimension.getUpperFrameX() != null && _suspensionDimension.getUpperFrameY() != null && _suspensionDimension.getUpperFrameZ() != null
+                && _suspensionDimension.getLowerAxleX() != null && _suspensionDimension.getLowerAxleY() != null && _suspensionDimension.getLowerAxleZ() != null
+                && _suspensionDimension.getUpperAxleX() != null && _suspensionDimension.getUpperAxleY() != null && _suspensionDimension.getUpperAxleZ() != null) {
+            // CalculateAntiSquat
+            lowerLinkSlopeXZ = ((_suspensionDimension.getLowerFrameZ() - _suspensionDimension.getLowerAxleZ()) /
+                    (_suspensionDimension.getLowerFrameX() - _suspensionDimension.getLowerAxleX()));
 
-        upperLinkSlopeXZ = ( (_suspensionDimension.getUpperFrameZ() - _suspensionDimension.getUpperAxleZ()) /
-                           (_suspensionDimension.getUpperFrameX() - _suspensionDimension.getUpperAxleX()) );
+            upperLinkSlopeXZ = ((_suspensionDimension.getUpperFrameZ() - _suspensionDimension.getUpperAxleZ()) /
+                    (_suspensionDimension.getUpperFrameX() - _suspensionDimension.getUpperAxleX()));
 
-        lowerLinkZIntercept = _suspensionDimension.getLowerFrameZ() - (lowerLinkSlopeXZ * _suspensionDimension.getLowerFrameX());
-        upperLinkZIntercept = _suspensionDimension.getUpperFrameZ() - (upperLinkSlopeXZ * _suspensionDimension.getUpperFrameX());
+            lowerLinkZIntercept = _suspensionDimension.getLowerFrameZ() - (lowerLinkSlopeXZ * _suspensionDimension.getLowerFrameX());
+            upperLinkZIntercept = _suspensionDimension.getUpperFrameZ() - (upperLinkSlopeXZ * _suspensionDimension.getUpperFrameX());
 
-        instantCenterX = (lowerLinkZIntercept - upperLinkZIntercept) / (upperLinkSlopeXZ - lowerLinkSlopeXZ);
-        instantCenterZ = (lowerLinkSlopeXZ * instantCenterX) + lowerLinkZIntercept;
+            instantCenterX = (lowerLinkZIntercept - upperLinkZIntercept) / (upperLinkSlopeXZ - lowerLinkSlopeXZ);
+            instantCenterZ = (lowerLinkSlopeXZ * instantCenterX) + lowerLinkZIntercept;
 
-        antiSquatSlope = _setup.getCenterOfGravityHeight() / _setup.getCenterOfGravityY(); // TODO Center of Gravity Y should be wheel base. Add variable later.
-        antiSquatHeight = antiSquatSlope * instantCenterX;
-        antiSquatPercentage = instantCenterZ / antiSquatHeight;
+            antiSquatSlope = _setup.getCenterOfGravityHeight() / _setup.getCenterOfGravityY(); // TODO Center of Gravity Y should be wheel base. Add variable later.
+            antiSquatHeight = antiSquatSlope * instantCenterX;
+            antiSquatPercentage = instantCenterZ / antiSquatHeight;
 
-        // Calculate Roll Center Height
-        lowerLinkSlopeXY = ( (_suspensionDimension.getLowerFrameY() - _suspensionDimension.getLowerAxleY()) /
-                (_suspensionDimension.getLowerFrameX() - _suspensionDimension.getLowerAxleX()) );
+            // Calculate Roll Center Height
+            lowerLinkSlopeXY = ((_suspensionDimension.getLowerFrameY() - _suspensionDimension.getLowerAxleY()) /
+                    (_suspensionDimension.getLowerFrameX() - _suspensionDimension.getLowerAxleX()));
 
-        upperLinkSlopeXY = ( (_suspensionDimension.getUpperFrameY() - _suspensionDimension.getUpperAxleY()) /
-                (_suspensionDimension.getUpperFrameX() - _suspensionDimension.getUpperAxleX()) );
+            upperLinkSlopeXY = ((_suspensionDimension.getUpperFrameY() - _suspensionDimension.getUpperAxleY()) /
+                    (_suspensionDimension.getUpperFrameX() - _suspensionDimension.getUpperAxleX()));
 
-        lowerLinkYIntercept = _suspensionDimension.getLowerFrameY() - (lowerLinkSlopeXY * _suspensionDimension.getLowerFrameX());
-        upperLinkYIntercept = _suspensionDimension.getUpperFrameY() - (upperLinkSlopeXY * _suspensionDimension.getUpperFrameX());
+            lowerLinkYIntercept = _suspensionDimension.getLowerFrameY() - (lowerLinkSlopeXY * _suspensionDimension.getLowerFrameX());
+            upperLinkYIntercept = _suspensionDimension.getUpperFrameY() - (upperLinkSlopeXY * _suspensionDimension.getUpperFrameX());
 
-        lowerLinkXIntersect = (-1 * lowerLinkYIntercept) / lowerLinkSlopeXY;
-        upperLinkXIntersect = (-1 * upperLinkYIntercept) / upperLinkSlopeXY;
+            lowerLinkXIntersect = (-1 * lowerLinkYIntercept) / lowerLinkSlopeXY;
+            upperLinkXIntersect = (-1 * upperLinkYIntercept) / upperLinkSlopeXY;
 
-        lowerLinkZIntersect = (lowerLinkSlopeXZ * lowerLinkXIntersect) + lowerLinkZIntercept;
-        upperLinkZIntersect = (upperLinkSlopeXZ * upperLinkXIntersect) + upperLinkZIntercept;
+            lowerLinkZIntersect = (lowerLinkSlopeXZ * lowerLinkXIntersect) + lowerLinkZIntercept;
+            upperLinkZIntersect = (upperLinkSlopeXZ * upperLinkXIntersect) + upperLinkZIntercept;
 
-        rollCenterSlopeXZ = ( (lowerLinkZIntersect - upperLinkZIntersect) /
-                              (lowerLinkXIntersect - upperLinkXIntersect));
+            rollCenterSlopeXZ = ((lowerLinkZIntersect - upperLinkZIntersect) /
+                    (lowerLinkXIntersect - upperLinkXIntersect));
 
-        rollCenterZIntercept = lowerLinkZIntersect - (rollCenterSlopeXZ * lowerLinkXIntersect);
-        rollCenterHeight = rollCenterZIntercept;
+            rollCenterZIntercept = lowerLinkZIntersect - (rollCenterSlopeXZ * lowerLinkXIntersect);
+            rollCenterHeight = rollCenterZIntercept;
+        }
 
 
 

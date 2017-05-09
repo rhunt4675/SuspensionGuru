@@ -49,10 +49,23 @@ public class MainFragment extends Fragment {
     private ImageView _vehicleImageView;
     private CoordinatorLayout _vehicleImageLayout;
 
+    /**
+     * Create fragment.
+     *
+     * @return Fragment
+     */
     public static MainFragment newInstance() {
         return new MainFragment();
     }
 
+    /**
+     * Lifecycle event.
+     *
+     * @param inflater Inflater
+     * @param container Container
+     * @param savedInstanceState SavedInstanceState
+     * @return View
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -292,6 +305,9 @@ public class MainFragment extends Fragment {
         return view;
     }
 
+    /**
+     * Lifecycle event.
+     */
     @Override
     public void onResume() {
         super.onResume();
@@ -318,12 +334,22 @@ public class MainFragment extends Fragment {
             _setupSpinner.setSelection(selectedSetupPosition);
     }
 
+    /**
+     * Lifecycle event.
+     */
     @Override
     public void onDestroy() {
         super.onDestroy();
         DBHelper.closeDB(getContext());
     }
 
+    /**
+     * Lifecycle event.
+     *
+     * @param requestCode Request code.
+     * @param resultCode Result code.
+     * @param data Results.
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {

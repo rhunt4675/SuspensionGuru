@@ -3,6 +3,7 @@ package edu.mines.csci448.suspensionguru.ui;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.database.DataSetObserver;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.text.InputType;
 import android.view.LayoutInflater;
@@ -18,15 +19,20 @@ import android.widget.TextView;
 
 import edu.mines.csci448.suspensionguru.HelpActivity;
 import edu.mines.csci448.suspensionguru.R;
+import edu.mines.csci448.suspensionguru.SetupFragment;
 import edu.mines.csci448.suspensionguru.data.Setup;
 
 public class SetupExpandableListViewAdapter implements ExpandableListAdapter {
     private Setup _setup;
     private LayoutInflater _inflater;
+    private Fragment _parentFragment;
 
-    public SetupExpandableListViewAdapter(Setup setup, Context context) {
+    private EditText _geolocation = null;
+
+    public SetupExpandableListViewAdapter(Setup setup, Context context, Fragment fragment) {
         _setup = setup;
         _inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        _parentFragment = fragment;
     }
 
     @Override
@@ -158,6 +164,21 @@ public class SetupExpandableListViewAdapter implements ExpandableListAdapter {
                 return true;
             }
         });
+
+        // Special Case -- Geolocation
+        final ImageButton geolocation = (ImageButton) convertView.findViewById(R.id.listview_child_setup_locationButton);
+        if (groupPosition == 1 && childPosition == 2) {
+            _geolocation = parameter;
+
+            geolocation.setVisibility(View.VISIBLE);
+            geolocation.setOnClickListener(new View.OnClickListener() {
+                @Override public void onClick(View v) {
+                    ((SetupFragment) _parentFragment).getLocation();
+                }
+            });
+        } else {
+            geolocation.setVisibility(View.GONE);
+        }
 
         ImageButton help = (ImageButton) convertView.findViewById(R.id.listview_child_setup_vehicleParameterHelp);
         help.setOnClickListener(new View.OnClickListener() {
@@ -381,5 +402,15 @@ public class SetupExpandableListViewAdapter implements ExpandableListAdapter {
         }
 
         return false;
+    }
+
+    public void setLocation(double latitude, double longitude) {
+        _setup.setLocationLatitude(latitude);
+        _setup.setLocationLongitude(longitude);
+
+        if (_geolocation != null) {
+            _geolocation.setText(latitude + "," + longitude);
+            _setup.saveSetup(_inflater.getContext());
+        }
     }
 }

@@ -13,6 +13,12 @@ public class HelpFragment extends Fragment {
     private static final String HELP_MESSAGE_BUNDLE = "helpMessageBundle";
     private int _helpMessageId = -1;
 
+    /**
+     * Create fragment.
+     *
+     * @param helpMessage Help message
+     * @return Fragment
+     */
     public static HelpFragment newInstance(@StringRes int helpMessage) {
         Bundle bundle = new Bundle();
         bundle.putInt(HELP_MESSAGE_BUNDLE, helpMessage);
@@ -22,6 +28,11 @@ public class HelpFragment extends Fragment {
         return fragment;
     }
 
+    /**
+     * Lifecycle event
+     *
+     * @param savedInstanceState Saved state
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +42,14 @@ public class HelpFragment extends Fragment {
         }
     }
 
+    /**
+     * Lifecycle event
+     *
+     * @param inflater Inflater
+     * @param container Container
+     * @param savedInstanceState Saved state
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

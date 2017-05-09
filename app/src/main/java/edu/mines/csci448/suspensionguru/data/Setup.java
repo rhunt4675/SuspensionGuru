@@ -36,15 +36,31 @@ public class Setup {
     private Double _centerOfGravityY;
     private Double _centerOfGravityHeight;
 
+    /**
+     * Simple constructor for new setup.
+     *
+     * @param name Name of setup.
+     */
     public Setup(String name) {
         this(null, name);
     }
 
+    /**
+     * (Private) Constructor for existing setup.
+     *
+     * @param id ID of setup in database.
+     * @param name Name of setup.
+     */
     private Setup(Integer id, String name) {
         _id = id;
         _name = name;
     }
 
+    /**
+     * Get a collection of content values to add to database.
+     *
+     * @return Content values.
+     */
     private ContentValues getContentValues() {
         ContentValues result = new ContentValues();
         result.put(DBSchema.SetupTable.Cols.NAME, _name);
@@ -67,6 +83,12 @@ public class Setup {
         return result;
     }
 
+    /**
+     * Get a list of all setups in the database.
+     *
+     * @param context Context
+     * @return List of setups.
+     */
     public static List<Setup> getSetups(Context context) {
         // Local Variables
         List<Setup> result = new ArrayList<>();
@@ -121,6 +143,11 @@ public class Setup {
         }
     }
 
+    /**
+     * Save a setup to the database.
+     *
+     * @param context Context
+     */
     public void saveSetup(Context context) {
         // Acquire DB Handle
         SQLiteDatabase db = DBHelper.getInstance(context).getWritableDatabase();
@@ -143,6 +170,11 @@ public class Setup {
         }
     }
 
+    /**
+     * Remove a setup from the database.
+     *
+     * @param context Context
+     */
     public void deleteSetup(Context context) {
         // Acquire DB Handle
         SQLiteDatabase db = DBHelper.getInstance(context).getWritableDatabase();

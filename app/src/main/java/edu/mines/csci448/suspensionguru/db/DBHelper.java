@@ -10,16 +10,32 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "suspensionguru.db";
     private static DBHelper theInstance = null;
 
+    /**
+     * Private constructor for DBHelper
+     *
+     * @param context Context
+     */
     private DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    /**
+     * Singleton access to Helper
+     *
+     * @param context Context
+     * @return DBHelper
+     */
     public static DBHelper getInstance(Context context) {
         if (theInstance == null)
             theInstance = new DBHelper(context);
         return theInstance;
     }
 
+    /**
+     * Initialize DB
+     *
+     * @param context Context
+     */
     public static void initDB(Context context) {
         // Open the Database Once (may take a very long time)
         SQLiteOpenHelper helper = new DBHelper(context);
@@ -38,12 +54,22 @@ public class DBHelper extends SQLiteOpenHelper {
         }.execute(helper);
     }
 
+    /**
+     * Close DB
+     *
+     * @param context Context
+     */
     public static void closeDB(Context context) {
         // Close the Database (may take a very long time)
         SQLiteOpenHelper helper = getInstance(context);
         helper.getWritableDatabase().close();
     }
 
+    /**
+     * Lifecycle event.
+     *
+     * @param db DB
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
         // Create Tables
@@ -52,11 +78,23 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(DBSchema.SuspensionTable.SQL_CREATE_TABLE);
     }
 
+    /**
+     * Upgrade DB
+     *
+     * @param db DB
+     * @param oldVersion OldVersion Number
+     * @param newVersion NewVersion Number
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Do Nothing
     }
 
+    /**
+     * OpenDB event
+     *
+     * @param db DB
+     */
     @Override
     public void onOpen(SQLiteDatabase db) {
         super.onOpen(db);

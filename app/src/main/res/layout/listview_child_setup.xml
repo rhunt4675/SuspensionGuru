@@ -24,6 +24,16 @@
         android:layout_weight="1" />
 
     <ImageButton
+        android:id="@+id/listview_child_setup_locationButton"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@android:drawable/ic_menu_compass"
+        android:contentDescription="@string/listview_parent_setup_imageDescription2"
+        android:background="?android:attr/selectableItemBackground" />
+
+    <ImageButton
         android:id="@+id/listview_child_setup_vehicleParameterHelp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

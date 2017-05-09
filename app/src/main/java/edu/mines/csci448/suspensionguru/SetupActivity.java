@@ -8,6 +8,11 @@ public class SetupActivity extends SingleFragmentActivity {
     private static final String VEHICLE_INTENT_EXTRA = "vehicle";
     private static final String SETUP_INTENT_EXTRA = "setup";
 
+    /**
+     * Get the fragment.
+     *
+     * @return SetupFragment
+     */
     @Override
     protected Fragment createFragment() {
         // Extract the Target Vehicle & Setup
@@ -19,6 +24,14 @@ public class SetupActivity extends SingleFragmentActivity {
         return SetupFragment.newInstance(vehicleName, setupName);
     }
 
+    /**
+     * Start this activity.
+     *
+     * @param context Context
+     * @param vehicleName Vehicle
+     * @param setupName Setup
+     * @return Intent
+     */
     public static Intent getIntent(Context context, String vehicleName, String setupName) {
         Intent intent =  new Intent(context, SetupActivity.class);
         intent.putExtra(VEHICLE_INTENT_EXTRA, vehicleName);
